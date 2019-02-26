@@ -12,8 +12,5 @@ class WinnerBookmarkService {
         getToolbarTree()
     }
 
-    private fun getToolbarTree() {
-        bookmarksClient.getSubTree(toolbarBookmarkId)
-
-    }
+    private fun getToolbarTree() = bookmarksClient.getSubTree(toolbarBookmarkId)
 }
