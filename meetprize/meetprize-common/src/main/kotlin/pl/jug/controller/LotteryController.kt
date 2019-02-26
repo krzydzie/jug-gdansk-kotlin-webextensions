@@ -1,10 +1,12 @@
 package pl.jug.controller
 
+import pl.jug.client.BookmarksClient
 import pl.jug.client.WindowClient
 import pl.jug.lib.*
 import pl.jug.model.Attendee
 import pl.jug.model.Winner
 import pl.jug.service.AttendeesService
+import pl.jug.service.WinnerBookmarkService
 import pl.jug.view.LotteryView
 import kotlin.random.Random
 
@@ -20,6 +22,7 @@ class LotteryController : PageController {
     private val lotteryView: LotteryView by autowired()
     private val attendeesService: AttendeesService by autowired()
     private val windowClient: WindowClient by autowired()
+    private val winnerBookmarkService: WinnerBookmarkService by autowired()
 
     private var availablePrizes: List<String>
         get() = lotteryView.prizesField.map { it.trim() }.filter { it.isNotEmpty() }
@@ -51,6 +54,7 @@ class LotteryController : PageController {
             confirmCandidateButton = {
                 val winner = requireNotNull(currentCandidateField) { "Proszę wylosować kandydata." }
                 winners += winner
+                winnerBookmarkService.bookmark(winner)
                 availablePrizes -= winner.prize
                 currentCandidateField = currentPrize?.let { Winner(it, randomCandidate()) }
             }
