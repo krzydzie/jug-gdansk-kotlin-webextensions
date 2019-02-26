@@ -60,11 +60,4 @@ class AttendeesViewImpl : AttendeesView() {
 
         return result
     }
-
-    fun abc() {
-        browser.bookmarks.getSubTree("dd")
-        console.log("test")
-        browser.bookmarks.create()
-    }
-
 }
