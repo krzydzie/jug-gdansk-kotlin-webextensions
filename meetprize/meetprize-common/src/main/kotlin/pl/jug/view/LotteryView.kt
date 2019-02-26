@@ -14,7 +14,6 @@ abstract class LotteryView : RenderedView() {
     abstract var confirmCandidateButton: AsyncAction
     abstract var skipCandidateButton: AsyncAction
     abstract val winners: ListElement<Winner>
-    abstract var testWriteButton: AsyncAction
     abstract var linkMeetup: Action
     abstract var linkMeetupLocal: Action
 }

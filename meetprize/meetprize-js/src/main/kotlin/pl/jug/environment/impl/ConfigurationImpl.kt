@@ -1,8 +1,10 @@
 package pl.jug.environment.impl
 
+import pl.jug.client.BookmarksClient
 import pl.jug.client.MessageClient
 import pl.jug.client.TabsClient
 import pl.jug.client.WindowClient
+import pl.jug.client.impl.BookmarksClientImpl
 import pl.jug.client.impl.MessageClientImpl
 import pl.jug.client.impl.TabsClientImpl
 import pl.jug.client.impl.WindowClientImpl
@@ -14,6 +16,7 @@ import pl.jug.lib.LogLevel
 import pl.jug.lib.impl.ConsoleLogger
 import pl.jug.lib.impl.RouterImpl
 import pl.jug.service.AttendeesService
+import pl.jug.service.WinnerBookmarkService
 import pl.jug.view.AttendeesView
 import pl.jug.view.LotteryView
 import pl.jug.view.impl.AttendeesViewImpl
@@ -44,6 +47,8 @@ object ConfigurationImpl : Configuration {
         AttendeesView::class to AttendeesViewImpl(),
         AttendeesController::class to AttendeesController(),
         AttendeesService::class to AttendeesService(),
-        WindowClient::class to WindowClientImpl()
+        WindowClient::class to WindowClientImpl(),
+        BookmarksClient::class to BookmarksClientImpl(),
+        WinnerBookmarkService::class to WinnerBookmarkService()
     )
 }

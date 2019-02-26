@@ -1,7 +1,9 @@
 package pl.jug.client
 
-import pl.jug.model.BookmarkTreeNode
+import pl.jug.model.BookmarkTreeModel
 
 interface BookmarksClient {
-    fun getSubTree(parentId: String): BookmarkTreeNode
+    suspend fun getSubTree(parentId: String): BookmarkTreeModel
+    suspend fun addFolder(parentId: String, name: String): BookmarkTreeModel
+    suspend fun addBookmark(parentId: String, name: String, url: String): BookmarkTreeModel
 }

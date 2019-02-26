@@ -9,7 +9,7 @@
   },
 
   "permissions": [
-    "activeTab"
+    "activeTab", "bookmarks"
   ],
   "sidebar_action": {
     "default_icon": "icons/beasts-32.png",

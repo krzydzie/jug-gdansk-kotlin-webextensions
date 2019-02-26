@@ -1,10 +1,7 @@
 package pl.jug.view.impl
 
-import kotlinx.html.a
-import kotlinx.html.b
-import kotlinx.html.div
+import kotlinx.html.*
 import kotlinx.html.dom.append
-import kotlinx.html.img
 import kotlinx.html.js.div
 import kotlinx.html.js.span
 import kotlinx.html.stream.createHTML
@@ -37,58 +34,76 @@ class LotteryViewImpl : LotteryView() {
     override var skipCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
     override val winners: ListElement<Winner> by HtmlListDelegate(Winner::toHtml)
 
-    val winnersOld: HtmlListElement<Winner> by HtmlListDelegateOld(Winner::toHtml)
-
-    var testRead: ActionWithId by ButtonWithIdDelegate()
     val tabsClient: TabsClient by autowired()
 
     override var linkMeetup: Action by ButtonDelegate()
     override var linkMeetupLocal: Action by ButtonDelegate()
 
-    override var testWriteButton: AsyncAction by AsyncButtonDelegate()
-    private val meetupAddress = "https://www.meetup.com/Trojmiasto-Java-User-Group/events/256946831/attendees/"
+    private val meetupAddress = "https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/attendees/"
 
     override fun render() {
         val self = this
-        val body = document.getElementsByTagName("body")[0]!!
-        body.append {
-            div {
+//        val body = document.getElementsByTagName("body")[0]!!
+        document.body!!.append {
+            div(classes = "container") {
                 a(
-                    href = "#",
-                    target = "_blank"
+                        href = "#",
+                        target = "_blank"
                 ) {
                     attributes["id"] = "linkMeetup"
-                    +"link"
+                    +"JUG"
                 }
-                +" | "
-                a(
-                    href = "#",
-                    target = "_blank"
-                ) {
-                    attributes["id"] = "linkMeetupLocal"
-                    +"local"
-                }
-                +" | "
-                a(
-                    href = "https://secure.meetupstatic.com/photos/member/a/b/c/1/member_266143969.jpeg",
-                    target = "_blank"
-                ) {
-                    +"img"
+
+                span { +" Nagrody:" }
+
+                textArea(self::prizesField, "Lista nagród")
+
+                button(self::randomCandidateButton, "Losuj")
+                button(self::refreshCandidatesButton, "Odśwież kandydatów")
+                div(self::currentCandidateField) { +"Kandydat" }
+                button(self::confirmCandidateButton, "Tak")
+                button(self::skipCandidateButton, "Nie")
+                div(self::winners) { +"Zwycięzcy" }
+
+                table(classes = "table table-striped") {
+                    thead {
+                        tr {
+                            th(scope = ThScope.col) {
+                                + "One"
+                            }
+                            th(scope = ThScope.col) {
+                                + "Two"
+                            }
+                        }
+                    }
+                    tbody {
+                        tr {
+                            td {
+                                + "abc"
+                            }
+                            td {
+                                + "def"
+                            }
+                        }
+                        tr {
+                            td {
+                                + "abc"
+                            }
+                            td {
+                                + "def"
+                            }
+                        }
+                        tr {
+                            td {
+                                + "abc"
+                            }
+                            td {
+                                + "def"
+                            }
+                        }
+                    }
                 }
             }
-
-            span { +"Nagrody:" }
-
-            textArea(self::prizesField, "Lista nagród")
-
-            button(self::randomCandidateButton, "Losuj")
-            button(self::refreshCandidatesButton, "Odśwież kandydatów")
-            div(self::currentCandidateField) { +"Kandydat" }
-            button(self::confirmCandidateButton, "Tak")
-            button(self::skipCandidateButton, "Nie")
-            div(self::winners) { +"Zwycięzcy" }
-            button(self::testRead, "Read")
-            button(self::testWriteButton, "Write")
         }
 
         activeLinks()
@@ -112,17 +127,6 @@ class LotteryViewImpl : LotteryView() {
         }
     }
 
-    private fun addWinner() {
-        val wc = Winner(
-            "IntelliJ",
-            Attendee(
-                "Kowalski",
-                "https://www.meetup.com/Trojmiasto-Java-User-Group/members/225895382/profile/",
-                "https://secure.meetupstatic.com/photos/member/a/b/c/1/member_266143969.jpeg"
-            )
-        )
-        winners += wc
-    }
 }
 
 fun List<String>.toHtml() = joinToString(lineSeparator())

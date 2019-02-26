@@ -41,7 +41,11 @@ class LotteryController : PageController {
 
     override fun load() {
         with(lotteryView) {
-            prizesField = listOf("aaa", "bbb", "ccc")
+            prizesField = listOf(
+                    "Licencja na Jetbrains Community",
+                    "Wejściówka na JUG'a",
+                    "JUG'owe piwo"
+            )
 
             randomCandidateButton = runIfNullCurrentCandidate {
                 refreshAttendees()
@@ -54,9 +58,9 @@ class LotteryController : PageController {
             confirmCandidateButton = {
                 val winner = requireNotNull(currentCandidateField) { "Proszę wylosować kandydata." }
                 winners += winner
-                winnerBookmarkService.bookmark(winner)
                 availablePrizes -= winner.prize
                 currentCandidateField = currentPrize?.let { Winner(it, randomCandidate()) }
+                winnerBookmarkService.bookmark(winner)
             }
 
             skipCandidateButton = {
