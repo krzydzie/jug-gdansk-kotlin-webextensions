@@ -1,0 +1,45 @@
+{
+  "description": "abc",
+  "manifest_version": 2,
+  "name": "abc",
+  "version": "1.0",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "icons": {
+    "48": "icons/beasts-48.png"
+  },
+
+  "permissions": [
+    "activeTab"
+  ],
+  "sidebar_action": {
+    "default_icon": "icons/beasts-32.png",
+    "default_title": "JUG",
+    "default_panel": "sidebar/index.html"
+
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "/meetprize-js/extension_place_content.js",
+        "/meetprize-js/jquery-3.3.1.slim.js",
+        "/meetprize-js/build/kotlin-js-min/main/kotlin.js",
+        "/meetprize-js/build/kotlin-js-min/main/declarations.js",
+        "/meetprize-js/build/kotlin-js-min/main/kotlinx-html-js.js",
+        "/meetprize-js/build/kotlin-js-min/main/kotlinx-coroutines-core.js",
+        "/meetprize-js/build/kotlin-js-min/main/kotlinx-serialization-runtime-js.js",
+        "/meetprize-js/build/kotlin-js-min/main/meetprize-js.js"
+      ]
+    }
+  ],
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      }
+    }
+  }
+}

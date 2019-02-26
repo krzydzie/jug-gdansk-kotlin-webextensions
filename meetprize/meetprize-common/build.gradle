@@ -1,0 +1,14 @@
+plugins {
+    id 'kotlin-platform-common'
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-common"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:0.10.0"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinx_coroutines_version}"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-common:${kotlinx_coroutines_version}"
+
+    testCompile "org.jetbrains.kotlin:kotlin-test-annotations-common"
+    testCompile "org.jetbrains.kotlin:kotlin-test-common"
+}

@@ -1,0 +1,24 @@
+plugins {
+    id 'kotlin2js' version '1.3.20'
+}
+
+//dodane
+apply plugin: 'kotlin-dce-js'
+
+group 'pl.samplekotlin'
+version '1.0-SNAPSHOT'
+
+repositories {
+    //dodane
+    jcenter()
+    //dodane
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+    mavenCentral()
+}
+
+dependencies {
+    //zmiana
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js"
+    //zmiana
+    compile "org.jetbrains.kotlinx:kotlinx-html-js:0.6.11"
+}

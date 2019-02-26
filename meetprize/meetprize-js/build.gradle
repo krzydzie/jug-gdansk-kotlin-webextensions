@@ -1,0 +1,30 @@
+plugins {
+    id 'kotlin-platform-js'
+}
+
+apply plugin: 'kotlin2js'
+apply plugin: 'kotlin-dce-js'
+//apply plugin: 'kotlinx-serialization'
+
+repositories {
+    jcenter()
+    maven { url "https://kotlin.bintray.com/kotlinx" }
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js"
+    compile "org.jetbrains.kotlinx:kotlinx-serialization-runtime-js:0.10.0"
+    compile 'com.github.cypressious.kotlin-webextensions-declarations:webextensions-declarations:v0.1'
+    compile 'pl.treksoft:jquery-kotlin:0.0.3'
+    compile "org.jetbrains.kotlinx:kotlinx-html-js:${kotlinx_html_version}"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinx_coroutines_version}"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core-js:${kotlinx_coroutines_version}"
+
+    expectedBy project(":meetprize-common")
+    testCompile "org.jetbrains.kotlin:kotlin-test-js"
+}
+
+compileKotlin2Js {
+    kotlinOptions.sourceMap = true
+    kotlinOptions.sourceMapEmbedSources = "always"
+}

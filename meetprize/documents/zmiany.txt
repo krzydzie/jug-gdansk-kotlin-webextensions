@@ -1,0 +1,47 @@
+
+Zmień jquery na obiekt jQueryx
+    dodaj dwa typy invoke dla jednego i dwóch parametrów
+Delegates w View
+- TextElement
+- TextListElement
+- HtmlElement
+- HtmlListElement
+- IncTextElement dodatkowo set i val , appender
+- IncHtmlElement appender
+
+Generic T tu będzie jquery Element
+Do implementacji
+- elementSelector tu jQuery
+- valueType (text, html, val)
+Zamiast nazwy Element daj Data. Element użyj gdy będzie potrzebne proxy dla elementu.
+Dla przycisku Button
+Do Property dodaj własność elementId : dodaje # i name.
+Implementacja delegate jako bean w configuration
+
+document.onError
+X - window['extensionPlace']
+
+W router jeśli na końcu rozwiązywania kontrollera jest wyjątek to throw, by główny application przechwycił. W Result jest getOrThrow()
+X - W config użyj router jako handler do konstruktora z parametrem control routings.
+Dodać jsCheck jsCheckNotNull zamiast check i checkNotNull.
+Inicjalizację application obejmij w ResultCatchException.
+Zrób jedno TestConfiguration w teście a zmiany przez parametry w konstruktorze w teście albo za pomocą helper funkcji z parametrami.
+
+Czy kotlin daje dostęp do obiektu window i onError w innych bibliotekach javascript ? Można by zmienne odczytywać i ustawić onError
+
+Prezentacja : powiedz o Rust języku który wygląda jak groovy albo kotlin
+
+Dodać interfejs ViewController z metodą renderView z własnością viewClass - szuka przez lookup, wtedy application woła ViewController.renderView a kontroler nie musi.
+renderView woła view.render()
+
+Router niech robi zwróci controller , application zawoła load , wcześniej musi przecież wołać renderView
+
+Dodać do View proxy:
+Element get set
+ReadOnlyElement get
+Button
+Można wtedy wykorzystać je w jvm modelu
+
+przerób mapper settings na podawanie referencji do konstruktora zamiast gotowy obiekt
+
+Przerobic ConfigurationHelper tak by parametry ktore nie dzialaja w groovy, dac jako Enum, a funkcja by mapowala, tak by w tescie byla cala konfiguracja. Wyciagnac wspolna klase testowej konfiguracji i w testach wstawiac tylko zmiany

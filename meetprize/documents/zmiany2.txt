@@ -1,0 +1,21 @@
+
+- Własności w View nazwy rozszerz o słowa Botton, Text, Label itd
+
+- budowa selecta'a
+  https://stackoverflow.com/questions/1801499/how-to-change-options-of-select-with-jquery
+  Select.prop('selectedIndex')
+
+- Wydziel część aplikacyjną i i część frameworkową do oddzielnych podprojektów modułów.
+
+- Stwórz pakiet Delegates i tam klasy o takich samych nazwach ale bez słowa Element. Delegują do klas ze słowem Element
+  Albo klasa Delegates jako object i metody delegatów. Zwraca object implementujacy interfejs delegate
+
+- HtmlListElement używa jquery więc common nie może tego użyć.
+  Otwórz w commom interfejs HtmlListElement, a HtmlListElement zmień na HtmlListElementImpl.
+  Użyj appendHtml zamiast Wymieniać cały html
+- uzyc innej ikony, z meetup
+
+- zmienic pakiet z pl.jug na pl.webext.meetprize
+- zmienic nazwe projektu z meetupprize na meetprize
+
+- Do bookmarks dodaj metodę pobierania referencji do miejsca toolbar i metoda dodajaca bookmark
