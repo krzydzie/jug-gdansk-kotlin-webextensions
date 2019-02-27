@@ -52,7 +52,7 @@ class LotteryViewImpl : LotteryView() {
                 textArea(self::prizesField, "Lista nagród")
                 br()
                 button(self::randomCandidateButton, "Losuj")
-                button(self::refreshCandidatesButton, "Odśwież kandydatów")
+//                button(self::refreshCandidatesButton, "Odśwież kandydatów")
                 div(self::currentCandidateField) { +"Kandydat" }
                 button(self::confirmCandidateButton, "Tak")
                 button(self::skipCandidateButton, "Nie")
