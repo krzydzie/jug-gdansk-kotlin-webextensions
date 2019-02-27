@@ -5,7 +5,7 @@
   "version": "1.0",
   "homepage_url": "https://github.com/mdn/webextensions-examples/",
   "icons": {
-    "48": "icons/meetprize-32.png"
+    "48": "icons/meetprize-48.png"
   },
 
   "permissions": [
