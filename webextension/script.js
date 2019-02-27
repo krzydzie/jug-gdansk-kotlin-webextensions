@@ -5,7 +5,13 @@ function byTagName(tagName) {
 byTagName("button").onclick = function() {
     var text = byTagName("input").value;
     byTagName("span").innerHTML = text
-    bookmarkPageInFolder(toolbarBookmarkId, "Ulubione", text)
+
+    try {
+        //bookmarkPageInFolder(toolbarBookmarkId, "Ulubione", text)
+    }
+    catch(err) {
+        alert(err.message)
+    }
 }
 
 
