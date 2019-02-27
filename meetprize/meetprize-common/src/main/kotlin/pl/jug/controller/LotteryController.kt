@@ -1,8 +1,9 @@
 package pl.jug.controller
 
-import pl.jug.client.BookmarksClient
 import pl.jug.client.WindowClient
-import pl.jug.lib.*
+import pl.jug.lib.Logger
+import pl.jug.lib.PageController
+import pl.jug.lib.autowired
 import pl.jug.model.Attendee
 import pl.jug.model.Winner
 import pl.jug.service.AttendeesService
@@ -36,8 +37,6 @@ class LotteryController : PageController {
     private var attendees: List<Attendee>? = null
 
     private var attendeesToPick: MutableList<Attendee> = mutableListOf()
-
-    private var candidateRandomizer: Sequence<Attendee?>? = null
 
     override fun load() {
         with(lotteryView) {
@@ -77,12 +76,9 @@ class LotteryController : PageController {
     }
 
     private fun randomCandidate(): Attendee {
-//        val randomizer = requireNotNull(candidateRandomizer) { "candidateRandomizer nie skonfigurowany" }
-//        val attendee = randomizer.singleOrNull()
         val attendee = getRandomCandidate()
         return attendee ?: throw IllegalStateException("Nie ma więcej kandydatów do losowania.")
     }
-
 
     private suspend fun refreshAttendees(onlyIfNull: Boolean = true) {
         if (onlyIfNull && this.attendees != null) {
@@ -93,7 +89,6 @@ class LotteryController : PageController {
         logger.info("liczba uczestników: ${attendees.size}")
         require(attendees.isNotEmpty()) { "Attendee list cannot be empty" }
         attendeesToPick = attendees.toMutableList()
-//        candidateRandomizer = createRandomizer(attendees)
         this.attendees = attendees
     }
 
@@ -101,43 +96,8 @@ class LotteryController : PageController {
         if (attendeesToPick.isEmpty()) return null
         val randomIndex = Random.nextInt(0, attendeesToPick.size)
         logger.info("randomIndex = $randomIndex")
-        return attendeesToPick.removeAt(randomIndex).also {
-            logger.info("wylosowani $it")
-        }
+        return attendeesToPick.removeAt(randomIndex)
     }
-
-    private fun createRandomizer(attendees: List<Attendee>) = run {
-        val attendeesToPick = attendees.toMutableList()
-        logger.info("poczatkowa liczba do losowania = ${attendeesToPick.size}")
-        fun randomIndex() = run {
-            logger.info("Random.nextInt(0, attendeesToPick.size = ${attendeesToPick.size} )")
-            Random.nextInt(0, attendeesToPick.size).also {
-                logger.info("wylosowana liczba $it")
-            }
-        }
-
-        sequence {
-            logger.info("petla dziala poki not empty ${attendees.isNotEmpty()}")
-            while (attendees.isNotEmpty()) {
-                val index = randomIndex()
-                logger.info("index = $index")
-                attendeesToPick.removeAt(index).also { candidate ->
-                    logger.info("wylosowany kandydat $candidate")
-                    yield(candidate)
-                }
-            }
-            logger.info("lista jest juz pusta, zwraca null")
-
-            while (true) yield(null)
-        }
-    }
-
-
-    private fun getDummyAttendee() = Attendee(
-        "Kowalski",
-        "https://www.meetup.com/",
-        "https://secure.meetupstatic.com/photos/member/a/b/c/1/member_266143969.jpeg"
-    )
 }
 
 

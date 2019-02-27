@@ -1,13 +1,12 @@
 package pl.jug.controller
 
-import pl.jug.lib.*
+import pl.jug.lib.PageController
+import pl.jug.lib.autowired
 import pl.jug.service.AttendeesService
 import pl.jug.view.AttendeesView
-import kotlin.reflect.KClass
 
 class AttendeesController : PageController {
-    private val logger = Logger.create<AttendeesController>()
-    val attendeesView: AttendeesView by autowired()
+    private val attendeesView: AttendeesView by autowired()
     private val attendeesService: AttendeesService by autowired()
 
 
