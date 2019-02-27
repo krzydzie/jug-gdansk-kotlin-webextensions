@@ -3,19 +3,19 @@ package pl.jug.view.impl
 import kotlinx.html.*
 import kotlinx.html.dom.append
 import kotlinx.html.js.div
-import kotlinx.html.js.span
 import kotlinx.html.stream.createHTML
-import org.w3c.dom.get
 import pl.jug.client.TabsClient
 import pl.jug.html.*
 import pl.jug.lib.*
-import pl.jug.model.Attendee
 import pl.jug.model.Winner
 import pl.jug.view.LotteryView
 import pl.treksoft.jquery.JQueryEventObject
 import tabs.UpdateProperties
 import webextensions.browser
 import kotlin.browser.document
+import kotlin.collections.List
+import kotlin.collections.joinToString
+import kotlin.collections.set
 import kotlin.js.Promise
 
 /*
@@ -63,50 +63,55 @@ class LotteryViewImpl : LotteryView() {
                 div(self::currentCandidateField) { +"Kandydat" }
                 button(self::confirmCandidateButton, "Tak")
                 button(self::skipCandidateButton, "Nie")
-                div(self::winners) { +"Zwycięzcy" }
+//                div(self::winners) { +"Zwycięzcy" }
+                table(self::winners)
 
-                table(classes = "table table-striped") {
-                    thead {
-                        tr {
-                            th(scope = ThScope.col) {
-                                + "One"
-                            }
-                            th(scope = ThScope.col) {
-                                + "Two"
-                            }
-                        }
-                    }
-                    tbody {
-                        tr {
-                            td {
-                                + "abc"
-                            }
-                            td {
-                                + "def"
-                            }
-                        }
-                        tr {
-                            td {
-                                + "abc"
-                            }
-                            td {
-                                + "def"
-                            }
-                        }
-                        tr {
-                            td {
-                                + "abc"
-                            }
-                            td {
-                                + "def"
-                            }
-                        }
-                    }
-                }
+//                sampleTable()
             }
         }
 
         activeLinks()
+    }
+
+    private fun DIV.sampleTable() {
+        table(classes = "table table-striped table-bordered") {
+            thead {
+                tr {
+                    th(scope = ThScope.col) {
+                        +"One"
+                    }
+                    th(scope = ThScope.col) {
+                        +"Two"
+                    }
+                }
+            }
+            tbody {
+                tr {
+                    td {
+                        +"abc"
+                    }
+                    td {
+                        +"def"
+                    }
+                }
+                tr {
+                    td {
+                        +"abc"
+                    }
+                    td {
+                        +"def"
+                    }
+                }
+                tr {
+                    td {
+                        +"abc"
+                    }
+                    td {
+                        +"def"
+                    }
+                }
+            }
+        }
     }
 
     private fun activeLinks() {
@@ -131,10 +136,28 @@ class LotteryViewImpl : LotteryView() {
 
 fun List<String>.toHtml() = joinToString(lineSeparator())
 
-fun Winner.toHtml() = createHTML().div {
+fun Winner.toHtml3() = createHTML().div {
     b { +"$prize " }
     a(href = attendee.profileUrl, target = "_blank") {
         +attendee.name
     }
     img(alt = attendee.name, src = attendee.photoUrl, classes = "avatar")
+}
+
+fun Winner.toHtml() = createHTML().tr {
+    td {
+        img(alt = attendee.name, src = attendee.photoUrl, classes = "avatar img-thumbnail rounded-circle")
+    }
+
+    td {
+        a(href = attendee.profileUrl, target = "_blank") {
+            +attendee.name
+        }
+    }
+
+    td {
+        b {
+            + prize
+        }
+    }
 }

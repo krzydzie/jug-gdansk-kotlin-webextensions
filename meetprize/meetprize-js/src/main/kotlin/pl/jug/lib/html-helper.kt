@@ -8,6 +8,7 @@ import org.w3c.dom.HTMLDivElement
 import org.w3c.dom.HTMLElement
 import org.w3c.dom.get
 import kotlin.browser.document
+import kotlin.collections.set
 import kotlin.reflect.KProperty0
 
 @HtmlTagMarker
@@ -49,11 +50,26 @@ fun TagConsumer<HTMLElement>.button(
 
 @HtmlTagMarker
 fun TagConsumer<HTMLElement>.button(id: String, label: String, block: BUTTON.() -> Unit = {}): HTMLButtonElement =
-    button {
+    button(type = ButtonType.button, classes = "btn btn-outline-info btn-sm m-1") {
         attributes["id"] = id
         +label
         block()
     }
+
+@HtmlTagMarker
+fun TagConsumer<HTMLElement>.table(idField: KProperty0<*>): HTMLElement =
+        table(id = idField.name)
+
+
+@HtmlTagMarker
+fun TagConsumer<HTMLElement>.table(id: String): HTMLElement =
+        table(classes = "table table-striped table-bordered") {
+            tbody {
+                attributes["id"] = id
+            }
+        }
+
+
 
 object lineSeparator {
     private const val RN = "\r\n"

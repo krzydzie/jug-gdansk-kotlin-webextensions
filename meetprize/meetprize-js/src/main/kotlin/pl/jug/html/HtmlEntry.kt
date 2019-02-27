@@ -12,7 +12,7 @@ class HtmlEntry(private val containerId: String) : DomEntry {
     }
 
     override fun appendNewLineToContainer() {
-        appendToContainer("</br>")
+//        appendToContainer("</br>")
     }
 
     override fun cleanContainer() {

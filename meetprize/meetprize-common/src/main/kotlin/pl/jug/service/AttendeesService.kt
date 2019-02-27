@@ -15,8 +15,6 @@ class AttendeesService {
 
 
     suspend fun getAttendees(): List<Attendee> {
-
-
         val value = messageClient.consumer.send(Request(MessageType.Attendees.name, "sending")).value
         return Json.parse(Attendee.serializer().list, value)
     }
