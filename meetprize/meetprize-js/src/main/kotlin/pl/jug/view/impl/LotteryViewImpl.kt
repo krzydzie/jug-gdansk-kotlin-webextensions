@@ -13,16 +13,9 @@ import pl.treksoft.jquery.JQueryEventObject
 import tabs.UpdateProperties
 import webextensions.browser
 import kotlin.browser.document
-import kotlin.collections.List
-import kotlin.collections.joinToString
 import kotlin.collections.set
 import kotlin.js.Promise
 
-/*
-Napis "root folder dla wygranych" select, przycisk zapisz
-Napis "wygrani zapisywani w folderze xxx"
-
- */
 class LotteryViewImpl : LotteryView() {
 
     override var prizesField: List<String> by ListTextareaDelegate()
@@ -43,7 +36,6 @@ class LotteryViewImpl : LotteryView() {
 
     override fun render() {
         val self = this
-//        val body = document.getElementsByTagName("body")[0]!!
         document.body!!.append {
             div(classes = "container") {
                 a(
@@ -64,55 +56,11 @@ class LotteryViewImpl : LotteryView() {
                 div(self::currentCandidateField) { +"Kandydat" }
                 button(self::confirmCandidateButton, "Tak")
                 button(self::skipCandidateButton, "Nie")
-//                div(self::winners) { +"Zwycięzcy" }
                 table(self::winners)
-
-//                sampleTable()
             }
         }
 
         activeLinks()
-    }
-
-    private fun DIV.sampleTable() {
-        table(classes = "table table-striped table-bordered") {
-            thead {
-                tr {
-                    th(scope = ThScope.col) {
-                        +"One"
-                    }
-                    th(scope = ThScope.col) {
-                        +"Two"
-                    }
-                }
-            }
-            tbody {
-                tr {
-                    td {
-                        +"abc"
-                    }
-                    td {
-                        +"def"
-                    }
-                }
-                tr {
-                    td {
-                        +"abc"
-                    }
-                    td {
-                        +"def"
-                    }
-                }
-                tr {
-                    td {
-                        +"abc"
-                    }
-                    td {
-                        +"def"
-                    }
-                }
-            }
-        }
     }
 
     private fun activeLinks() {
