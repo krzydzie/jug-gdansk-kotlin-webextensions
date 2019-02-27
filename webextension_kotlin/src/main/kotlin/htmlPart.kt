@@ -23,7 +23,7 @@ fun buildHtml() {
                 onClickFunction = {
                     Tags.input.value.also { text ->
                         Tags.span.innerHTML = text
-                        bookmarkPageInFolder2(toolbarBookmarkId, "Ulubione", text)
+                        bookmarkPageInFolder1(toolbarBookmarkId, "Ulubione", text)
                     }
                 }
             }

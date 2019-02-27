@@ -9,14 +9,8 @@ fun bookmarkPageInFolder2(parentId: String, folderName: String, page: String) {
     }
 }
 
-fun String.asUrl2() = run {
-    if(this.contains(".")) this else "$this.pl"
-}. run {
-    if(this.indexOf("http") == 0) this else "https://$this"
-}
-
 fun createBookmark2(parentId: String, page: String) {
-    bookmarks.create(CreateDetails(parentId, page, page.asUrl2())).catch {
+    bookmarks.create(CreateDetails(parentId, page, page.asUrl())).catch {
         console.error("bookmarks.createBookmark error: ${it.message}")
     }
 }

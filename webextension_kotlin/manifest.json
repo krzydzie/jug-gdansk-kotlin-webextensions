@@ -9,7 +9,7 @@
   },
 
   "permissions": [
-    "activeTab", "bookmarks"
+    "bookmarks"
   ],
   "sidebar_action": {
     "default_icon": "icons/meetprize-32.png",
