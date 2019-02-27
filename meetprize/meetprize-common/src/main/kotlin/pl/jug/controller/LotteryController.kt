@@ -1,6 +1,5 @@
 package pl.jug.controller
 
-import pl.jug.client.WindowClient
 import pl.jug.lib.Logger
 import pl.jug.lib.PageController
 import pl.jug.lib.autowired
@@ -11,18 +10,11 @@ import pl.jug.service.WinnerBookmarkService
 import pl.jug.view.LotteryView
 import kotlin.random.Random
 
-/**
- * pole na wpisanie nagrod
- * button do pobrania listy uczestnikow
- * textarea do wyswietlenia listy uczestnikow
- *
- */
 class LotteryController : PageController {
 
     private val logger = Logger.create<LotteryController>()
     private val lotteryView: LotteryView by autowired()
     private val attendeesService: AttendeesService by autowired()
-    private val windowClient: WindowClient by autowired()
     private val winnerBookmarkService: WinnerBookmarkService by autowired()
 
     private var availablePrizes: List<String>
