@@ -1,6 +1,6 @@
 #prizesField {
-  width: 400px;
-  height: 100px;
+  width: 250px;
+  height: 80px;
 }
 
 button {
@@ -14,7 +14,7 @@ button {
 #currentCandidateField {
   border: 1px solid blue;
   width: 400px;
-  height: 200px;
+  height: 150px;
 }
 
 #winners {

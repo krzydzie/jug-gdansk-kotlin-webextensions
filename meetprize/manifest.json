@@ -1,18 +1,18 @@
 {
-  "description": "abc",
+  "description": "Meet Prize",
   "manifest_version": 2,
-  "name": "abc",
+  "name": "Meet-Prize",
   "version": "1.0",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/beastify",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/",
   "icons": {
-    "48": "icons/beasts-48.png"
+    "48": "icons/meetprize-32.png"
   },
 
   "permissions": [
     "activeTab", "bookmarks"
   ],
   "sidebar_action": {
-    "default_icon": "icons/beasts-32.png",
+    "default_icon": "icons/meetprize-32.png",
     "default_title": "JUG",
     "default_panel": "sidebar/index.html"
 

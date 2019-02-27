@@ -32,7 +32,7 @@ class LotteryViewImpl : LotteryView() {
 
     override var confirmCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
     override var skipCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
-    override val winners: ListElement<Winner> by HtmlListDelegate(Winner::toHtml)
+    override val winners: ListElement<Winner> by HtmlListDelegate(Winner::toTableRow)
 
     val tabsClient: TabsClient by autowired()
 
@@ -55,9 +55,10 @@ class LotteryViewImpl : LotteryView() {
                 }
 
                 span { +" Nagrody:" }
+                br()
 
                 textArea(self::prizesField, "Lista nagród")
-
+                br()
                 button(self::randomCandidateButton, "Losuj")
                 button(self::refreshCandidatesButton, "Odśwież kandydatów")
                 div(self::currentCandidateField) { +"Kandydat" }
@@ -136,15 +137,18 @@ class LotteryViewImpl : LotteryView() {
 
 fun List<String>.toHtml() = joinToString(lineSeparator())
 
-fun Winner.toHtml3() = createHTML().div {
-    b { +"$prize " }
-    a(href = attendee.profileUrl, target = "_blank") {
-        +attendee.name
+fun Winner.toHtml() = createHTML().div {
+    div(classes = "m-1") { hr() }
+    img(alt = attendee.name, src = attendee.photoUrl, classes = "avatar img-thumbnail rounded-circle m-1")
+    a(href = attendee.profileUrl, target = "_blank", classes = "m-1") { +attendee.name }
+
+    div(classes = "alert alert-primary") {
+        attributes["role"] = "alert"
+        +"$prize "
     }
-    img(alt = attendee.name, src = attendee.photoUrl, classes = "avatar")
 }
 
-fun Winner.toHtml() = createHTML().tr {
+fun Winner.toTableRow() = createHTML().tr {
     td {
         img(alt = attendee.name, src = attendee.photoUrl, classes = "avatar img-thumbnail rounded-circle")
     }
