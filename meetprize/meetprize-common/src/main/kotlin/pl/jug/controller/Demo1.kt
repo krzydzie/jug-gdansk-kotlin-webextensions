@@ -1,24 +1,25 @@
 package pl.jug.controller
 
+import pl.jug.client.WindowClient
 import pl.jug.lib.Logger
 import pl.jug.lib.PageController
 import pl.jug.lib.autowired
 import pl.jug.model.Attendee
-import pl.jug.model.Winner
 import pl.jug.service.AttendeesService
 import pl.jug.service.WinnerBookmarkService
 import pl.jug.view.LotteryView
 import kotlin.random.Random
 
-class LotteryController : PageController {
-
+class Demo1: PageController {
     private val logger = Logger.create<LotteryController>()
     private val lotteryView: LotteryView by autowired()
     private val attendeesService: AttendeesService by autowired()
+    private val windowClient: WindowClient by autowired()
     private val winnerBookmarkService: WinnerBookmarkService by autowired()
 
     private var availablePrizes: List<String>
         get() = lotteryView.prizesField.map { it.trim() }.filter { it.isNotEmpty() }
+
         set(value) {
             lotteryView.prizesField = value
         }
@@ -32,29 +33,24 @@ class LotteryController : PageController {
 
     override fun load() {
         with(lotteryView) {
+            //Lista nagród
             prizesField = listOf(
-                    "Licencja na Jetbrains Community",
-                    "Wejściówka na JUG'a",
-                    "JUG'owe piwo"
+                    "nagroda"
             )
 
-            randomCandidateButton = runIfNoneCandidatePicked {
-                refreshAttendees()
-                val prize = requireNotNull(currentPrize) { "Proszę podać nagrody" }
-                currentCandidateField = Winner(prize, randomCandidate())
+            //Losowanie pierwszej nagrody
+            randomCandidateButton = {
+                windowClient.alert("losowanie kliknięte")
             }
 
+            //kandydat zatwierdzony, losuje następnego
             confirmCandidateButton = {
-                val winner = requireNotNull(currentCandidateField) { "Proszę wylosować kandydata." }
-                winners += winner
-                availablePrizes -= winner.prize
-                currentCandidateField = currentPrize?.let { Winner(it, randomCandidate()) }
-                winnerBookmarkService.bookmark(winner)
+                windowClient.alert("TAK")
             }
 
+            //kandydat odrzucony, losuje następneg
             skipCandidateButton = {
-                val candidate = requireNotNull(currentCandidateField) { "Proszę wylosować kandydata." }
-                currentCandidateField = candidate.copy(attendee = randomCandidate())
+                windowClient.alert("NIE")
             }
         }
     }
@@ -86,6 +82,5 @@ class LotteryController : PageController {
         val randomIndex = Random.nextInt(0, attendeesToPick.size)
         return attendeesToPick.removeAt(randomIndex)
     }
+
 }
-
-
