@@ -35,10 +35,6 @@ class AsyncButtonDelegate : ReadWriteProperty<Any, AsyncAction> {
     }
 }
 
-/**
- * todo dorob ButtonCatchingDelegate tam gdzie async jest niepotrzebnne
- */
-
 class AsyncButtonCatchingDelegate(private val defaultErrorMessage: String = "Operacja nie udana.") :
     ReadWriteProperty<Any, AsyncAction> {
     private val windowClient: WindowClient by autowired()
