@@ -201,7 +201,7 @@ E.g. `pl.jug.controller.LotteryController`
 private val lotteryView: LotteryView by autowired()
 ```
 
-### Overriding a member of an interface implemented by delegation [documentation](https://kotlinlang.org/docs/reference/delegation.html)
+### Overriding a member of an interface implemented by delegation - [documentation](https://kotlinlang.org/docs/reference/delegation.html)
 A class implements an interface but the implementation is provided as a parameter. What more a class can implement several interfaces and each is provided but other parameters.
 
 In `common` platform we needs to trigger some actions for html on the javascript side but there is no access to that.
