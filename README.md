@@ -2,7 +2,7 @@
 
 2019-02-28 [Gdańsk Java User Group "Spotkanie 116: JS? We have to go deeper"](https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/)
 
-Power Point presentation in file [2019-02-28 JUG Webextension w Kotlinie.pptx](blob/master/2019-02-28%20JUG%20Webextension%20w%20Kotlinie.pptx)
+Power Point presentation in file [2019-02-28 JUG Webextension w Kotlinie.pptx](2019-02-28%20JUG%20Webextension%20w%20Kotlinie.pptx)
 
 Source code of sample webextensions used during the JUG meeting. 
 
