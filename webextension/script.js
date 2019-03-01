@@ -7,7 +7,7 @@ byTagName("button").onclick = function() {
     byTagName("span").innerHTML = text
 
     try {
-        //bookmarkPageInFolder(toolbarBookmarkId, "Ulubione", text)
+        bookmarkPageInFolder(toolbarBookmarkId, "Ulubione", text)
     }
     catch(err) {
         alert(err.message)

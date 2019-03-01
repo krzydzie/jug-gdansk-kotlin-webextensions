@@ -9,7 +9,6 @@ import pl.jug.client.impl.MessageClientImpl
 import pl.jug.client.impl.TabsClientImpl
 import pl.jug.client.impl.WindowClientImpl
 import pl.jug.controller.AttendeesController
-import pl.jug.controller.Demo1
 import pl.jug.controller.LotteryController
 import pl.jug.environment.Configuration
 import pl.jug.environment.ExtensionPlace
@@ -34,7 +33,7 @@ object ConfigurationImpl : Configuration {
     override val jsLogger = ConsoleLogger()
 
     override val routing = mapOf(
-        ExtensionPlace.SideBar to Demo1::class,
+        ExtensionPlace.SideBar to LotteryController::class,
         ExtensionPlace.Content to AttendeesController::class
     )
 
@@ -47,7 +46,6 @@ object ConfigurationImpl : Configuration {
         LotteryController::class to LotteryController(),
         AttendeesView::class to AttendeesViewImpl(),
         AttendeesController::class to AttendeesController(),
-        Demo1::class to Demo1(),
         AttendeesService::class to AttendeesService(),
         WindowClient::class to WindowClientImpl(),
         BookmarksClient::class to BookmarksClientImpl(),

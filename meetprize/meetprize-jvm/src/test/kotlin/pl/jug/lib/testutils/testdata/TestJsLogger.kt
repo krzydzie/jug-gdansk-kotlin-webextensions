@@ -5,28 +5,27 @@ import pl.jug.lib.JsLogger
 class TestJsLogger : JsLogger {
     val logs: MutableMap<String, MutableList<String>> = mutableMapOf()
 
-    override fun trace(prefix: String, vararg o: Any?) {
-        addLog("trace", prefix, o)
+    override fun trace(prefix: String, message: String) {
+        addLog("trace", prefix, message)
     }
 
-    override fun info(prefix: String, vararg o: Any?) {
-        addLog("info", prefix, o)
+    override fun info(prefix: String, message: String) {
+        addLog("info", prefix, message)
     }
 
-    override fun debug(prefix: String, vararg o: Any?) {
-        addLog("debug", prefix, o)
+    override fun debug(prefix: String, message: String) {
+        addLog("debug", prefix, message)
     }
 
-    override fun error(prefix: String, vararg o: Any?) {
-        addLog("error", prefix, o)
+    override fun error(prefix: String, message: String) {
+        addLog("error", prefix, message)
     }
 
     override fun dir(prefix: String, obj: Any) {
-        addLog("dir", prefix, emptyArray())
+        addLog("dir", prefix, "")
     }
 
-    private fun addLog(type: String, prefix: String, arg: Array<out Any?>) {
-        val message = if (arg.isEmpty()) "" else arg[0]
+    private fun addLog(type: String, prefix: String, message: String) {
         logs.putIfAbsent(type, mutableListOf())
         val list = logs[type] ?: throw RuntimeException("Unexpected null list")
         list += "$prefix ${message.nullToEmptyString()}"

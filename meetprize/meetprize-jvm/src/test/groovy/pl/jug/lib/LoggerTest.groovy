@@ -36,7 +36,7 @@ class LoggerTest extends Specification {
         testClass.logDebug("text")
 
         then:
-        1 * jsLoggerMock.debug("TestClass", [["text"]])
+        1 * jsLoggerMock.debug("TestClass", "text")
     }
 
     def "default level debug for info"() {
@@ -44,7 +44,7 @@ class LoggerTest extends Specification {
         testClass.logInfo("text")
 
         then:
-        1 * jsLoggerMock.info("TestClass", [["text"]])
+        1 * jsLoggerMock.info("TestClass", "text")
     }
 
     def "default level debug for error"() {
@@ -52,7 +52,7 @@ class LoggerTest extends Specification {
         testClass.logError("text")
 
         then:
-        1 * jsLoggerMock.error("TestClass", [["text"]])
+        1 * jsLoggerMock.error("TestClass", "text")
     }
 
 
@@ -77,7 +77,7 @@ class LoggerTest extends Specification {
         testClassWithInfoLevel.logInfo("text")
 
         then:
-        1 * jsLoggerMock.info("TestClassWithInfoLevel", [["text"]])
+        1 * jsLoggerMock.info("TestClassWithInfoLevel", "text")
     }
 
     def "changed level to info for error"() {
@@ -85,6 +85,6 @@ class LoggerTest extends Specification {
         testClassWithInfoLevel.logError("text")
 
         then:
-        1 * jsLoggerMock.error("TestClassWithInfoLevel", [["text"]])
+        1 * jsLoggerMock.error("TestClassWithInfoLevel", "text")
     }
 }
