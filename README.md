@@ -81,33 +81,33 @@ window.extensionPlace = "content"`
 [meetprize-js/pl.jug.environment.impl.ConfigurationImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/environment/impl/ConfigurationImpl.kt) : `beanMappings`
 
 ### Webextension API Clients
-Implementations of API clients: `*meetprize-js*/pl.jug.client.impl`
+Implementations of API clients: *meetprize-js*`/pl.jug.client.impl`
 
 ### Coroutine extensions for Promise
 [meetprize-js/pl.jug.lib.coroutine](master/meetprize/meetprize-js/src/main/kotlin/pl/jug/lib/coroutine.kt)
 
 ### View implementation
-`meetprize-js/pl.jug.view.impl`
+*meetprize-js*`/pl.jug.view.impl`
 * [LotteryViewImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/view/impl/LotteryViewImpl.kt)
 * [AttendeesViewImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/view/impl/AttendeesViewImpl.kt)
 
 ### Controller
-`meetprize-common/src/main/kotlin/pl.jug.controller`
+*meetprize-common*`/pl.jug.controller`
 * [LotteryController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/LotteryController.kt)
 * [AttendeesController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/AttendeesController.kt)
 
 ### Communication between left Sidebar and Attendees list
 Sidebar and Attendees list cannot communicate directly. It is done via messages.
 
-`pl.jug.service.AttendeesService` handles it. It uses a Message API for that:
+[pl.jug.service.AttendeesService](meetprize/meetprize-common/src/main/kotlin/pl/jug/service/AttendeesService.kt) handles it. It uses a Message API for that:
 ```kotlin
 val messageClient: MessageClient by autowired()
 ```
-* `getAttendees` is used by `LotteryController` as a client side
-* `startServer` is used by `AttendeesController` as a server side
+* `getAttendees` is used by [LotteryController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/LotteryController.kt) as a client side
+* `startServer` is used by [AttendeesController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/AttendeesController.kt) as a server side
 
 #### Message Content Layer
-`pl.jug.model.Attendee` has an annotation `@Serializable`. It is the same mechanism like in Java Lombok library. The annotation provides an additional method in such a class `serializer()`. Thanks to that we do such stuff:
+[pl.jug.model.Attendee](master/meetprize/meetprize-common/src/main/kotlin/pl/jug/model/Attendee.kt) has an annotation `@Serializable`. It is the same mechanism like in Java Lombok library. The annotation provides an additional method in such a class `serializer()`. Thanks to that we do such stuff:
 ```kotlin
 //serialization
 val attendees: List<Attendee> = listOf(Attendee(a), Attendee(b))
@@ -141,8 +141,8 @@ browser.runtime.sendMessage(message)
 browser.runtime.onMessage.addListener(listener)
 ```
 
-#### `MessageClientImpl` communication
-##### `Sidebar` - `pl.jug.client.impl.MessageConsumerImpl`
+#### [MessageClientImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/client/impl/MessageClientImpl.kt) communication
+##### `Sidebar` - `MessageClientImpl#MessageConsumerImpl`
 ```kotlin
 //listen to a response from Attendees Page
 init {
@@ -180,7 +180,7 @@ class MessageConsumerImpl : MessageConsumer {
 }
 ```
 
-##### `Attendees Page` - `pl.jug.client.impl.MessageProducerImpl`
+##### `Attendees Page` - `MessageClientImpl#MessageProducerImpl`
 ```kotlin
 override fun startServer(messageType: MessageType, responseHandler: (Request) -> Response) {
     //listener that returns serialized attendees 
@@ -194,14 +194,14 @@ override fun startServer(messageType: MessageType, responseHandler: (Request) ->
 ```
 
 ### Tricky techniques 
-#### "Delegated Properties" [link](https://kotlinlang.org/docs/reference/delegated-properties.html)
+#### [Delegated Properties](https://kotlinlang.org/docs/reference/delegated-properties.html)
 
 E.g. `pl.jug.controller.LotteryController`
 ```kotlin
 private val lotteryView: LotteryView by autowired()
 ```
 
-#### "Overriding a member of an interface implemented by delegation" _( [documentation](https://kotlinlang.org/docs/reference/delegation.html) )_
+#### [Overriding a member of an interface implemented by delegation](https://kotlinlang.org/docs/reference/delegation.html) )
 
 In `common` platform we needs to trigger some actions for html on the javascript side but there is no access to that.
 It is applied in `pl.jug.html.ListElement` which is used by `common` platform `pl.jug.view.LotteryView`. `ListElement` has `DomEntry` property where an implementation should be provided.
@@ -215,5 +215,6 @@ In `HtmlListDelegate` there is `HtmlEntry` implementation for that
 listElement = ListElement(property.name, renderer, HtmlEntry(property.name))
 ```
 
+----------------------------------------------------------------------------------------------------------------------------------
 
 I wish you lots of fun with that. 
