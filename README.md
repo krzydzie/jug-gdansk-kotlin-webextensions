@@ -1,6 +1,8 @@
 # Description
 
-Source code of webextensions used during [Gdańsk Java User Group "Spotkanie 116: JS? We have to go deeper"](https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/) conducted on 28.02.2019
+2019-02-28 [Gdańsk Java User Group "Spotkanie 116: JS? We have to go deeper"](https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/)
+
+Source code of sample webextensions used during the JUG meeting. 
 
 Webextensions tested on Firefox 65.0.2
 
