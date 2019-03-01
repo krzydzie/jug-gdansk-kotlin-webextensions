@@ -2,13 +2,13 @@
 
 2019-02-28 [Gdańsk Java User Group "Spotkanie 116: JS? We have to go deeper"](https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/)
 
-Power Point presentation in file [2019-02-28 JUG Webextension w Kotlinie.pptx](2019-02-28%20JUG%20Webextension%20w%20Kotlinie.pptx)
+Power Point presentation in [2019-02-28 JUG Webextension w Kotlinie.pptx](2019-02-28%20JUG%20Webextension%20w%20Kotlinie.pptx)
 
 Source code of sample webextensions used during the JUG meeting. 
 
 Webextensions tested on Firefox 65.0.2
 
-Used Webextensions API not applicable on Chrome or Opera without [Mozilla's polyfill](https://github.com/mozilla/webextension-polyfill) _(differences in Promise/callback mechanizm)_
+Not applicable on Chrome or Opera without [Mozilla's polyfill](https://github.com/mozilla/webextension-polyfill) _(differences in Promise/callback mechanizm)_
 
 All extensions apply adding bookmark in `Bookmarks Toolbar`. Do not forget to activate this toolbar during development as `web-ext` starts Firefox in a minimal form with this toolbar hidden.
 
@@ -193,14 +193,16 @@ override fun startServer(messageType: MessageType, responseHandler: (Request) ->
 ```
 
 ## Tricky techniques 
-### [Delegated Properties](https://kotlinlang.org/docs/reference/delegated-properties.html)
+### Delegated Properties - [documentation](https://kotlinlang.org/docs/reference/delegated-properties.html)
+getter/setter is delegated to another object
 
 E.g. `pl.jug.controller.LotteryController`
 ```kotlin
 private val lotteryView: LotteryView by autowired()
 ```
 
-### [Overriding a member of an interface implemented by delegation](https://kotlinlang.org/docs/reference/delegation.html)
+### Overriding a member of an interface implemented by delegation [documentation](https://kotlinlang.org/docs/reference/delegation.html)
+A class implements an interface but the implementation is provided as a parameter. What more a class can implement several interfaces and each is provided but other parameters.
 
 In `common` platform we needs to trigger some actions for html on the javascript side but there is no access to that.
 It is applied in `pl.jug.html.ListElement` which is used by `common` platform `pl.jug.view.LotteryView`. `ListElement` has `DomEntry` property where an implementation should be provided.
