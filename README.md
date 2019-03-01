@@ -2,6 +2,8 @@
 
 2019-02-28 [Gdańsk Java User Group "Spotkanie 116: JS? We have to go deeper"](https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/)
 
+Power Point presentation in file `2019-02-28 JUG Webextension w Kotlinie.pptx`
+
 Source code of sample webextensions used during the JUG meeting. 
 
 Webextensions tested on Firefox 65.0.2
@@ -28,9 +30,9 @@ Extensions is refreshed automatically after code changes.
 ## Available projects:
 1. webextension - a sample extension in pure HTML and Javascript
 1. webextension_kotlin - a sample extension in Kotlin
-1. meetprize - a complex multiplatform extension that provides prize drawing during JUG
+1. meetprize - a complex multiplatform extension that provides sample prize drawing during JUG
 
-## Project webextension_kotlin
+## Project "webextension_kotlin"
 1. Sourcecode: `src/main/kotlin`
 1. Main class: `Main.kt`
 
@@ -41,9 +43,9 @@ Extensions is refreshed automatically after code changes.
 * _js2kotlin.kt_ - "native" bookmark API interfaces in Kotlin, documentation on [Calling JavaScript from Kotlin](https://kotlinlang.org/docs/reference/js-interop.html) page  
 * _stringUrl.kt_ - an old style transforming `page` into `url`
 * _stringUrl2.kt_ - a scoping function used for page transforming, more about that on [Mastering Kotlin standard functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
-* stringUrl3.kt_ - an application of extension for String, more about that on [Kotlin Extensions](https://kotlinlang.org/docs/reference/extensions.html) 
+* _stringUrl3.kt_ - an application of extension for String, more about that on [Kotlin Extensions](https://kotlinlang.org/docs/reference/extensions.html) 
 
-## Project meetprize
+## Project "meetprize"
 It is a multiplatform project. In the main folder is global `build.gradle`. Apart from that there are dedicated `build.gradle` in folders: meetprize-common, meetprize-js, meetprize-jvm:
 * meetprize-jvm targets JVM platform and contains Spock unit tests
 * meetprize-js targets Javascript platform 
