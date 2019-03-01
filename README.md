@@ -200,7 +200,7 @@ E.g. `pl.jug.controller.LotteryController`
 private val lotteryView: LotteryView by autowired()
 ```
 
-### [Overriding a member of an interface implemented by delegation](https://kotlinlang.org/docs/reference/delegation.html) )
+### [Overriding a member of an interface implemented by delegation](https://kotlinlang.org/docs/reference/delegation.html)
 
 In `common` platform we needs to trigger some actions for html on the javascript side but there is no access to that.
 It is applied in `pl.jug.html.ListElement` which is used by `common` platform `pl.jug.view.LotteryView`. `ListElement` has `DomEntry` property where an implementation should be provided.
