@@ -31,7 +31,6 @@ class MessageConsumerImpl : MessageConsumer {
         }
 
         browser.runtime.onMessage.addListener(listener)
-
     }
 
     override suspend fun send(message: Request) = run {
