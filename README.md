@@ -8,9 +8,9 @@ Source code of sample webextensions used during the JUG meeting.
 
 Webextensions tested on Firefox 65.0.2
 
-Used Webextensions API not applicable on Chrome or Opera without [Mozilla's polyfill](https://github.com/mozilla/webextension-polyfill) _(Differences in Promise/callback mechanizm)_
+Used Webextensions API not applicable on Chrome or Opera without [Mozilla's polyfill](https://github.com/mozilla/webextension-polyfill) _(differences in Promise/callback mechanizm)_
 
-All extensions apply adding a bookmark in `Bookmarks Toolbar`. Do not forget to activate this toolbar during development as `web-ext` starts Firefox in a minimal form with this toolbar hidden.
+All extensions apply adding bookmark in `Bookmarks Toolbar`. Do not forget to activate this toolbar during development as `web-ext` starts Firefox in a minimal form with this toolbar hidden.
 
 Technologies under the hood:
 1. [jQuery](https://jquery.com)
@@ -28,25 +28,26 @@ web-ext is the best for Firefox. More about that:
 Extensions is refreshed automatically after code changes.
 
 ## Available projects:
-1. webextension - a sample extension in pure HTML and Javascript
-1. webextension_kotlin - a sample extension in Kotlin
-1. meetprize - a complex multiplatform extension that provides sample prize drawing during JUG
+1. *webextension* - a sample extension in pure HTML and Javascript
+1. *webextension_kotlin* - a sample extension in Kotlin
+1. *meetprize* - a complex multiplatform extension that provides sample prize drawing during JUG
 
 ## Project "webextension_kotlin"
 1. Sourcecode: `src/main/kotlin`
-1. Main class: `Main.kt`
+1. Main class: [Main.kt](webextension_kotlin/src/main/kotlin/Main.kt)
 
 ### webextension_kotlin file descriptions
-* _bookmarkPart1.kt_ - Promise/callback version of handling bookmark operations
-* _bookmarkPart2.kt_ - [coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) applied in bookmark operations
-* _coroutine.kt_ - coroutines applied to Promises
-* _js2kotlin.kt_ - "native" bookmark API interfaces in Kotlin, documentation on [Calling JavaScript from Kotlin](https://kotlinlang.org/docs/reference/js-interop.html) page  
-* _stringUrl.kt_ - an old style transforming `page` into `url`
-* _stringUrl2.kt_ - a scoping function used for page transforming, more about that on [Mastering Kotlin standard functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
-* _stringUrl3.kt_ - an application of extension for String, more about that on [Kotlin Extensions](https://kotlinlang.org/docs/reference/extensions.html) 
+* [bookmarkPart1.kt](webextension_kotlin/src/main/kotlin/bookmarkPart1.kt) - Promise/callback version of handling bookmark operations
+* [bookmarkPart2.kt](webextension_kotlin/src/main/kotlin/bookmarkPart2.kt) - [coroutines](https://kotlinlang.org/docs/reference/coroutines/coroutines-guide.html) applied in bookmark operations
+* [coroutine.kt](webextension_kotlin/src/main/kotlin/coroutine.kt) - coroutines applied to Promises
+* [js2kotlin.kt](webextension_kotlin/src/main/kotlin/js2kotlin.kt) - "native" bookmark API interfaces in Kotlin - [How to call JavaScript from Kotlin](https://kotlinlang.org/docs/reference/js-interop.html)  
+* [stringUrl.kt](webextension_kotlin/src/main/kotlin/stringUrl.kt) - an old style transformation `page` into `url`
+* [stringUrl2.kt](webextension_kotlin/src/main/kotlin/stringUrl2.kt) - a scoping function used for `page` transformation - [Scoping Kotlin functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
+transformacja
+* [stringUrl3.kt](webextension_kotlin/src/main/kotlin/stringUrl3.kt) - extension for String, [link for extensions](https://kotlinlang.org/docs/reference/extensions.html) 
 
 ## Project "meetprize"
-It is a multiplatform project. In the main folder is global `build.gradle`. Apart from that there are dedicated `build.gradle` in folders: meetprize-common, meetprize-js, meetprize-jvm:
+It is a multiplatform project. In the main folder there is global `build.gradle`. Apart from that there are dedicated `build.gradle`s in folders: meetprize-common, meetprize-js, meetprize-jvm:
 * meetprize-jvm targets JVM platform and contains Spock unit tests
 * meetprize-js targets Javascript platform 
 * meetprize-common is a common part for all platforms
@@ -58,12 +59,18 @@ There are two different views controlled by different controllers. But in both c
     * `sidebar_action`
       * `default_panel`: `sidebar/index.html`
         * `/meetprize-js/extension_place_sidebar.js`
-          * `window.extensionPlace = "sidebar"`          
+```javascript
+window.extensionPlace = "sidebar"
+```
+
 * meetup.com members page
   * `manifest.json`
     * `content_scripts`
       * `js`: `/meetprize-js/extension_place_content.js`
-        * `window.extensionPlace = "content"`
+```javascript
+window.extensionPlace = "content"`
+```
+
 * Controller resolution
   * meetprize-js/src/main/kotlin/pl.jug.environment.impl.ConfigurationImpl : `routing`
 
@@ -74,7 +81,7 @@ meetprize-js/src/main/kotlin/Main
 meetprize-js/src/main/kotlin/pl.jug.environment.impl.ConfigurationImpl : `beanMappings`
 
 ### Webextension API Clients
-Implementations of accessing API clients: meetprize-js/src/main/kotlin/pl.jug.client.impl
+Implementations of API clients: meetprize-js/src/main/kotlin/pl.jug.client.impl
 
 ### Coroutine extensions for Promise
 meetprize-js/src/main/kotlin/pl.jug.lib.coroutine
@@ -119,7 +126,7 @@ val attendees: List<Attendee> = Json.parse(Attendee.serializer().list, value)
 browser.tabs.sendMessage(activeTabId, message)
 ```
 
-`Attendees Page` listens to that _( [documentation] (https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage) )_:
+`Attendees Page` listens to that _( [documentation](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage) )_:
 ```javascript
 browser.runtime.onMessage.addListener(listener) 
 ```
@@ -149,7 +156,7 @@ override suspend fun send(message: Request) = run {
 ```
 
 ##### Sidebar coroutine support
-It is required only on the Client side as the Server listen to request and at once responses. The Client sends asynchronously a request and has to sleep until a response arrives.
+It is required only on the Client side as the Server listens to a request and at once sends a response. The Client sends asynchronously a request and has to sleep until a response arrives.
 
 ```kotlin
 class MessageConsumerImpl : MessageConsumer {
