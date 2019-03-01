@@ -44,7 +44,7 @@ Extensions is refreshed automatically after code changes.
 * [stringUrl.kt](webextension_kotlin/src/main/kotlin/stringUrl.kt) - an old style transformation `page` into `url`
 * [stringUrl2.kt](webextension_kotlin/src/main/kotlin/stringUrl2.kt) - a scoping function used for `page` transformation - [Scoping Kotlin functions: run, with, let, also and apply](https://medium.com/@elye.project/mastering-kotlin-standard-functions-run-with-let-also-and-apply-9cd334b0ef84)
 transformacja
-* [stringUrl3.kt](webextension_kotlin/src/main/kotlin/stringUrl3.kt) - extension for String, [link for extensions](https://kotlinlang.org/docs/reference/extensions.html) 
+* [stringUrl3.kt](webextension_kotlin/src/main/kotlin/stringUrl3.kt) - extension for String - [documentation for extensions](https://kotlinlang.org/docs/reference/extensions.html) 
 
 ## Project "meetprize"
 It is a multiplatform project. In the main folder there is global `build.gradle`. Apart from that there are dedicated `build.gradle`s in folders: meetprize-common, meetprize-js, meetprize-jvm:
@@ -55,10 +55,10 @@ It is a multiplatform project. In the main folder there is global `build.gradle`
 ### Routing
 There are two different views controlled by different controllers. But in both cases the same javascript files are used. To distinct the parts in the router a additional placeholder is injected:
 * UI left sidebar lottery part
-  * `manifest.json`
+  * [manifest.json](meetprize/manifest.json)
     * `sidebar_action`
-      * `default_panel`: `sidebar/index.html`
-        * `/meetprize-js/extension_place_sidebar.js`
+      * `default_panel`: [sidebar/index.html](meetprize/sidebar/index.html)
+        * [/meetprize-js/extension_place_sidebar.js](meetprize/meetprize-js/extension_place_sidebar.js)
 ```javascript
 window.extensionPlace = "sidebar"
 ```
@@ -214,3 +214,6 @@ In `HtmlListDelegate` there is `HtmlEntry` implementation for that
 ```kotlin
 listElement = ListElement(property.name, renderer, HtmlEntry(property.name))
 ```
+
+
+I wish you lots of fun with that. 
