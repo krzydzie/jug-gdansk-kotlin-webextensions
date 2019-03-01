@@ -58,43 +58,43 @@ There are two different views controlled by different controllers. But in both c
   * [manifest.json](meetprize/manifest.json)
     * `sidebar_action`
       * `default_panel`: [sidebar/index.html](meetprize/sidebar/index.html)
-        * [/meetprize-js/extension_place_sidebar.js](meetprize/meetprize-js/extension_place_sidebar.js)
+        * [meetprize-js/extension_place_sidebar.js](meetprize/meetprize-js/extension_place_sidebar.js)
 ```javascript
 window.extensionPlace = "sidebar"
 ```
 
 * meetup.com members page
-  * `manifest.json`
+  * [manifest.json](meetprize/manifest.json)
     * `content_scripts`
-      * `js`: `/meetprize-js/extension_place_content.js`
+      * `js`: [meetprize-js/extension_place_content.js](meetprize/meetprize-js/extension_place_content.js)
 ```javascript
 window.extensionPlace = "content"`
 ```
 
 * Controller resolution
-  * meetprize-js/src/main/kotlin/pl.jug.environment.impl.ConfigurationImpl : `routing`
+  * [meetprize-js/pl.jug.environment.impl.ConfigurationImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/environment/impl/ConfigurationImpl.kt) : `routing`
 
 ### Main file
-meetprize-js/src/main/kotlin/Main
+[meetprize-js/Main](master/meetprize/meetprize-js/src/main/kotlin/Main.kt)
 
 ### Dependency Injection Bean Mapping
-meetprize-js/src/main/kotlin/pl.jug.environment.impl.ConfigurationImpl : `beanMappings`
+[meetprize-js/pl.jug.environment.impl.ConfigurationImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/environment/impl/ConfigurationImpl.kt) : `beanMappings`
 
 ### Webextension API Clients
-Implementations of API clients: meetprize-js/src/main/kotlin/pl.jug.client.impl
+Implementations of API clients: `*meetprize-js*/pl.jug.client.impl`
 
 ### Coroutine extensions for Promise
-meetprize-js/src/main/kotlin/pl.jug.lib.coroutine
+[meetprize-js/pl.jug.lib.coroutine](master/meetprize/meetprize-js/src/main/kotlin/pl/jug/lib/coroutine.kt)
 
 ### View implementation
-meetprize-js/src/main/kotlin/pl.jug.view.impl
-* LotteryViewImpl
-* AttendeesViewImpl
+`meetprize-js/pl.jug.view.impl`
+* [LotteryViewImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/view/impl/LotteryViewImpl.kt)
+* [AttendeesViewImpl](meetprize/meetprize-js/src/main/kotlin/pl/jug/view/impl/AttendeesViewImpl.kt)
 
-### Controllers
-meetprize-common/src/main/kotlin/pl.jug.controller
-* LotteryController
-* AttendeesController
+### Controller
+`meetprize-common/src/main/kotlin/pl.jug.controller`
+* [LotteryController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/LotteryController.kt)
+* [AttendeesController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/AttendeesController.kt)
 
 ### Communication between left Sidebar and Attendees list
 Sidebar and Attendees list cannot communicate directly. It is done via messages.
