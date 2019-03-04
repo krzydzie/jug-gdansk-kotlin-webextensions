@@ -46,6 +46,8 @@ transformacja
 * [stringUrl3.kt](webextension_kotlin/src/main/kotlin/stringUrl3.kt) - extension for String - [documentation for extensions](https://kotlinlang.org/docs/reference/extensions.html) 
 
 # Project "meetprize"
+This is about drawing awards between participants after finished presentations at a Meetup JUG meeting.
+
 It is a multiplatform project. In the main folder there is global `build.gradle`. Apart from that there are dedicated `build.gradle`s in folders: meetprize-common, meetprize-js, meetprize-jvm:
 * meetprize-jvm targets JVM platform and contains Spock unit tests
 * meetprize-js targets Javascript platform 
