@@ -52,7 +52,7 @@ It is a multiplatform project. In the main folder there is global `build.gradle`
 * meetprize-common is a common part for all platforms
 
 After launching the extension you have to open a meetup page with an event. Then go to Attendees part and click "See all" to show all attendees. The page to be expected is `https://www.meetup.com/<MEETUP-GROUP>/events/9..9/attendees/`
-![attendees](docs/attendees.png) 
+![attendees](attendees.png) 
 
 ## Routing
 There are two different views controlled by different controllers. But in both cases the same javascript files are used. To distinct the parts in the router a additional placeholder is injected:
