@@ -105,7 +105,7 @@ are implemented as button click  callbacks. Let's look how it works. In `Lottery
 ```kotlin
 override var skipCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
 ```
-And there is an implementation of the click:
+And there is an implementation of the click in `AsyncButtonCatchingDelegate`:
 ```kotlin
 property.elementById().click {
     GlobalScope.launch {
