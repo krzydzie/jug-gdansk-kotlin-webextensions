@@ -4,17 +4,12 @@ import kotlinx.html.*
 import kotlinx.html.dom.append
 import kotlinx.html.js.div
 import kotlinx.html.stream.createHTML
-import pl.jug.client.TabsClient
 import pl.jug.html.*
 import pl.jug.lib.*
 import pl.jug.model.Winner
 import pl.jug.view.LotteryView
-import pl.treksoft.jquery.JQueryEventObject
-import tabs.UpdateProperties
-import webextensions.browser
 import kotlin.browser.document
 import kotlin.collections.set
-import kotlin.js.Promise
 
 class LotteryViewImpl : LotteryView() {
 
@@ -27,25 +22,13 @@ class LotteryViewImpl : LotteryView() {
     override var skipCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
     override val winners: ListElement<Winner> by HtmlListDelegate(Winner::toTableRow)
 
-    val tabsClient: TabsClient by autowired()
-
     override var linkMeetup: Action by ButtonDelegate()
     override var linkMeetupLocal: Action by ButtonDelegate()
-
-    private val meetupAddress = "https://www.meetup.com/Trojmiasto-Java-User-Group/events/259129690/attendees/"
 
     override fun render() {
         val self = this
         document.body!!.append {
             div(classes = "container") {
-                a(
-                        href = "#",
-                        target = "_blank"
-                ) {
-                    attributes["id"] = "linkMeetup"
-                    +"JUG"
-                }
-
                 span { +" Nagrody:" }
                 br()
 
@@ -56,26 +39,6 @@ class LotteryViewImpl : LotteryView() {
                 button(self::confirmCandidateButton, "Tak")
                 button(self::skipCandidateButton, "Nie")
                 table(self::winners)
-            }
-        }
-
-        activeLinks()
-    }
-
-    private fun activeLinks() {
-        ::linkMeetup.elementById().click { gotoUrl(it, meetupAddress) }
-    }
-
-    private fun gotoUrl(it: JQueryEventObject, url: String): Promise<Any> {
-        it.preventDefault()
-
-        return async {
-            val activeId = tabsClient.getActiveTabId()
-
-            if (activeId == null) {
-                console.error("brak aktywnego tab id ")
-            } else {
-                browser.tabs.update(activeId, UpdateProperties(url))
             }
         }
     }
@@ -108,7 +71,7 @@ fun Winner.toTableRow() = createHTML().tr {
 
     td {
         b {
-            + prize
+            +prize
         }
     }
 }

@@ -51,6 +51,9 @@ It is a multiplatform project. In the main folder there is global `build.gradle`
 * meetprize-js targets Javascript platform 
 * meetprize-common is a common part for all platforms
 
+After launching the extension you have to open a meetup page with an event. Then go to Attendees part and click "See all" to show all attendees. The page to be expected is `https://www.meetup.com/<MEETUP-GROUP>/events/9..9/attendees/`
+![attendees](docs/attendees.png) 
+
 ## Routing
 There are two different views controlled by different controllers. But in both cases the same javascript files are used. To distinct the parts in the router a additional placeholder is injected:
 * UI left sidebar lottery part
@@ -94,6 +97,26 @@ Implementations of API clients: *meetprize-js*`/pl.jug.client.impl`
 *meetprize-common*`/pl.jug.controller`
 * [LotteryController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/LotteryController.kt)
 * [AttendeesController](meetprize/meetprize-common/src/main/kotlin/pl/jug/controller/AttendeesController.kt)
+
+## UI error handling
+As you can see in `LotteryController` there are thrown exceptions in case of wrong input. Magically these are shown as window alerts. The first point is that all actions
+are implemented as button click  callbacks. Let's look how it works. In `LotteryViewImpl` there is:
+```kotlin
+override var skipCandidateButton: AsyncAction by AsyncButtonCatchingDelegate()
+```
+And there is an implementation of the click:
+```kotlin
+property.elementById().click {
+    GlobalScope.launch {
+        try {
+            block()
+        } catch (e: Throwable) {
+            windowClient.alert(e.message ?: defaultErrorMessage)
+        }
+    }
+}
+```
+That's it. `block()` is in `try` and `catch` shows an alert.
 
 ## Communication between left Sidebar and Attendees list
 Sidebar and Attendees list cannot communicate directly. It is done via messages.

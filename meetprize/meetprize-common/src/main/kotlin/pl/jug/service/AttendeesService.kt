@@ -1,6 +1,7 @@
 package pl.jug.service
 
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.list
 import pl.jug.client.MessageClient
 import pl.jug.client.MessageType
 import pl.jug.client.Request
